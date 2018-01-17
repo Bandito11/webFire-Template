@@ -9,6 +9,7 @@ A template using Firebase and TypeScript for a simple webserver
 - run < cd ~/path/to/project > 
 - run < git clone https://github.com/Bandito11/webFire-Template.git myprojectname >
 - run < cd /toproject >
+- git remote rm origin
 - Install nodejs from www.nodejs.org
 - Open the terminal (command prompt if on Windows) and run < npm install -g firebase-tools >
 - Run < cd ~/path/to/project > on the Terminal. 
