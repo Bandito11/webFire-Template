@@ -5,12 +5,43 @@ A template using Firebase and TypeScript for a simple webserver using Firebase
 - Add src folder
 src
 index.html
+robots.txt
 ...css
 ...pages
 ...js
 ...libs
 ...assets
 
+- robots.txt should have:
+User-agent: *
+Allow: /
+
+Should be edited to fit your needs
+
+
+- sitemap.xml should have
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+   <url>
+
+      <loc>your website domain</loc>
+
+      <lastmod>2017-01-16</lastmod>
+
+      <changefreq>always</changefreq>
+
+      <priority>1.0</priority>
+
+   </url>
+
+</urlset> 
+
+The sitemap should be edited to fit the needs of the user, more info @ https://support.google.com/webmasters/answer/183668?hl=en
+
+==========================================================================
 # Instructions:
 
 - Go to https://git-scm.com/ and follow the instruction to install git.
@@ -29,7 +60,12 @@ index.html
 - After creating the project, run < firebase serve > on the terminal. If everything installed correctly a webpage with the text "Hello World" should be shown when typing < localhost:5000 > on your favorite web browser.
 
 
+
+
 If something is not clear not be timid to ask Google for help :)
 
 
 Seriously, unless something was setup wrong don't create an issue >:(
+
+
+
