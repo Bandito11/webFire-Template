@@ -16,7 +16,7 @@
     "typescript": "^2.3.3"
   },
   "scripts": {
-    "start": "firebase serve"
+    "start": "firebase serve",
     "dev": "gulp clean && gulp && firebase serve"
   },
   "author": "Esteban Morales",
