@@ -1,5 +1,16 @@
 # webFire-Template
-A template using Firebase and TypeScript for a simple webserver
+A template using Firebase and TypeScript for a simple webserver using Firebase
+
+# TODO: 
+" Add src folder
+
+src
+index.html
+...css
+...pages
+...js
+...libs
+...assets
 
 # Instructions:
 
