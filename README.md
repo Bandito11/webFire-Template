@@ -2,7 +2,7 @@
 A template using Firebase and TypeScript for a simple webserver using Firebase
 
 # TODO: 
-" Add src folder
+' Add src folder
 
 src
 index.html
