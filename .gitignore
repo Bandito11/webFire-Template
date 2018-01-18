@@ -1,6 +1,8 @@
 #This can be edited however you wish. 
-firebase.json
-.firebaserc
 node_modules/
 dist/
 npm-debug.log*
+*.log
+*.tmp
+*.tmp.*
+log.txt

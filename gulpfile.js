@@ -22,7 +22,7 @@ gulp.task('clean', function (error) {
 //  */
 
 gulp.task('build:www', function () {
-    let tsProject = ts.createProject('src/tsconfig.json');
+    let tsProject = ts.createProject('tsconfig.json');
     console.log('Compiling www!');
     return tsProject.src()
         .pipe(tsProject())
@@ -33,6 +33,17 @@ gulp.task('assets', function () {
     gulp.src('src/assets/**/*')
         .pipe(gulp.dest('dist/assets'));
 });
+
+gulp.task('robots', function () {
+    gulp.src('src/robots.txt')
+        .pipe(gulp.dest('dist'));
+});
+
+gulp.task('sitemap', function () {
+    gulp.src('src/sitemap.xml')
+        .pipe(gulp.dest('dist'));
+});
+
 
 gulp.task('styles', function () {
     gulp.src('src/**/*.css')
@@ -55,15 +66,14 @@ gulp.task('watch', function () {
  * Import front end libs from node_modules
  */
 
-gulp.task('libs', function () {
-    gulp.src('node_modules/lokijs/build/lokijs.min.js')
-        .pipe(gulp.dest('dist/www/libs'));
-
+ gulp.task('libs', function () {
+//    gulp.src('node_modules/lokijs/build/lokijs.min.js')
+//        .pipe(gulp.dest('dist/www/libs'));
     gulp.src('src/libs/**/*.js')
-        .pipe(gulp.dest('dist/www'));
-});
+        .pipe(gulp.dest('dist/libs'));
+ });
 
 
-
-gulp.task('default', ['libs', 'watch']);
+// All custom gulp tasks should be added before watch task!!!
+gulp.task('default', [ 'libs', 'pages', 'styles', 'assets', 'robots', 'sitemap', 'build:www', 'watch']);
 
