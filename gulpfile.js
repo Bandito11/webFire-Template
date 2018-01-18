@@ -67,8 +67,10 @@ gulp.task('watch', function () {
  */
 
  gulp.task('libs', function () {
-//    gulp.src('node_modules/lokijs/build/lokijs.min.js')
-//        .pipe(gulp.dest('dist/www/libs'));
+    gulp.src('node_modules/firebase/firebase.js')
+    .pipe(gulp.dest('dist/www/libs'));
+   gulp.src('node_modules/lokijs/build/lokijs.min.js')
+       .pipe(gulp.dest('dist/www/libs'));
     gulp.src('src/libs/**/*.js')
         .pipe(gulp.dest('dist/libs'));
  });

@@ -1,9 +1,10 @@
 {
-  "name": "webFire-Template",
-  "version": "1.0.0",
+  "name": "webfire-template",
+  "version": "0.1.0",
   "description": "A template for Firebase Tools.",
   "dependencies": {
-    "lokijs": "^1.5.1"
+    "lokijs": "^1.5.1",
+    "firebase": "^4.8.2"
   },
   "devDependencies": {
     "@types/gulp": "^4.0.2",
