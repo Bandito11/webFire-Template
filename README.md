@@ -1,5 +1,5 @@
 # webFire-Template
-A template using Firebase and TypeScript for a simple webserver using Firebase
+A template using Firebase and TypeScript for a simple webserver using Firebase. This will probably always be a WIP because software development is never over :)
 
 # TODO: 
 - Add src folder in project folder if it's not there. This is the structure, if you want to change the name of any folder you have to edit the gulpfile. 
