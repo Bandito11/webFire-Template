@@ -2,7 +2,7 @@
 A template using Firebase and TypeScript for a simple webserver using Firebase
 
 # TODO: 
-- Add src folder in project folder
+- Add src folder in project folder if it's not there. This is the structure, if you want to change the name of any folder you have to edit the gulpfile. 
    - my-project-folder
       - src 
          - index.html
