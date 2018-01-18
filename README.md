@@ -3,7 +3,7 @@ A template using Firebase and TypeScript for a simple webserver using Firebase
 
 # TODO: 
 - Add src folder
-src\n
+src /n
    .../index.html
    .../robots.txt
    .../css
