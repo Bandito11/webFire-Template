@@ -2,15 +2,16 @@
 A template using Firebase and TypeScript for a simple webserver using Firebase
 
 # TODO: 
-- Add src folder
-   - src
-      - index.html
-      - robots.txt
-      - css
-      - pages
-      - js
-      - libs
-      - assets
+- Add src folder in project folder
+   - my-project
+      - src 
+         - index.html
+         - robots.txt
+         - css
+         - pages
+         - js
+         - libs
+         - assets
 
 - robots.txt should have:
   - User-agent: *
