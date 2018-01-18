@@ -3,14 +3,14 @@ A template using Firebase and TypeScript for a simple webserver using Firebase
 
 # TODO: 
 - Add src folder
-src /n
-   .../index.html
-   .../robots.txt
-   .../css
-   .../pages
-   .../js
-   .../libs
-   .../assets
+src
+   index.html
+  robots.txt
+   css
+   pages
+   js
+   libs
+   assets
 
 - robots.txt should have:
 User-agent: *
