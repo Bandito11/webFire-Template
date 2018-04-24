@@ -71,7 +71,7 @@ gulp.task('start', ['libs', 'assets', 'styles', 'pages', 'build:www', 'watch'
 ], function () {
     let stream = nodemon(
         {
-            ext: '*',
+            ext: 'ts html',
             watch: 'src',
             tasks: ['firebase']
         });
