@@ -1,6 +1,6 @@
 {
   "name": "webfire-template",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A template for Firebase Tools.",
   "dependencies": {
     "lokijs": "^1.5.1",
@@ -8,17 +8,17 @@
   },
   "devDependencies": {
     "@types/gulp": "^4.0.2",
-    "@types/gulp-nodemon": "^0.0.31",
-    "@types/lokijs": "^1.5.0",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
-    "gulp-nodemon": "^2.2.1",
+    "gulp-shell": "^0.6.5",
     "gulp-typescript": "^3.1.6",
+    "nodemon": "^1.17.3",
     "typescript": "^2.3.3"
   },
   "scripts": {
     "start": "firebase serve",
-    "dev": "gulp clean && gulp && firebase serve"
+    "dev": "gulp clean && gulp",
+    "deploy": "firebase deploy"
   },
   "author": "Esteban Morales",
   "license": "MIT"
