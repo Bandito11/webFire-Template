@@ -7,11 +7,11 @@ A template using Firebase and TypeScript for a simple webserver using Firebase. 
       - src 
          - index.html
          - robots.txt
-         - css
-         - pages
-         - js
-         - libs
-         - assets
+         - css/
+         - pages/
+         - js/
+         - libs/
+         - assets/
 
 - robots.txt should have:
   - User-agent: *
