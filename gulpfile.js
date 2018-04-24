@@ -1,25 +1,12 @@
 let gulp = require("gulp");
 let ts = require("gulp-typescript");
 let del = require('del');
-
+let nodemon = require('nodemon');
+const shell = require('gulp-shell')
 
 gulp.task('clean', function (error) {
     return del.sync('dist', error);
 });
-
-/**
- * If using github Pages
- */
-// gulp.task('gitPages', function () {
-//     gulp.src('dist/**/*')
-//     .pipe(gulp.dest('docs'));
-//     });
-
-
-/**
- * TODO: Build for the front end
- * WIP :(
-//  */
 
 gulp.task('build:www', function () {
     let tsProject = ts.createProject('tsconfig.json');
@@ -62,20 +49,35 @@ gulp.task('watch', function () {
     gulp.watch('src/**/*.ts', ['build:www']);
 });
 
+gulp.task('firebase', shell.task([
+    'firebase serve'
+]))
+
 /**
  * Import front end libs from node_modules
  */
 
- gulp.task('libs', function () {
-    gulp.src('node_modules/firebase/firebase.js')
-    .pipe(gulp.dest('dist/libs'));
-   gulp.src('node_modules/lokijs/build/lokijs.min.js')
-       .pipe(gulp.dest('dist/libs'));
+gulp.task('libs', function () {
+    //    gulp.src('node_modules/firebase/firebase.js')
+    //        .pipe(gulp.dest('dist/libs'));
     gulp.src('src/libs/**/*.js')
         .pipe(gulp.dest('dist/libs'));
- });
+});
 
+/**
+*Start the node app
+*/
+gulp.task('start', ['libs', 'assets', 'styles', 'pages', 'build:www', 'watch'
+], function () {
+    let stream = nodemon(
+        {
+            ext: '*',
+            watch: 'src',
+            tasks: ['firebase']
+        });
+    return stream;
+});
 
 // All custom gulp tasks should be added before watch task!!!
-gulp.task('default', [ 'libs', 'pages', 'styles', 'assets', 'robots', 'sitemap', 'build:www', 'watch']);
+gulp.task('default', ['start']);
 
