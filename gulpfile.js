@@ -4,8 +4,8 @@ let del = require('del');
 let nodemon = require('nodemon');
 const shell = require('gulp-shell')
 
-gulp.task('clean', function (error) {
-    return del.sync('dist', error);
+gulp.task('clean', function () {
+    return del.sync('dist/*');
 });
 
 gulp.task('build:www', function () {
@@ -64,20 +64,6 @@ gulp.task('libs', function () {
         .pipe(gulp.dest('dist/libs'));
 });
 
-/**
-*Start the node app
-*/
-gulp.task('start', ['libs', 'assets', 'styles', 'pages', 'build:www', 'watch'
-], function () {
-    let stream = nodemon(
-        {
-            ext: 'ts html',
-            watch: 'src',
-            tasks: ['firebase']
-        });
-    return stream;
-});
-
 // All custom gulp tasks should be added before watch task!!!
-gulp.task('default', ['start']);
+gulp.task('default', ['clean', 'libs', 'assets', 'styles', 'pages', 'build:www', 'watch', 'firebase']);
 
