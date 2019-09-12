@@ -1,69 +1,74 @@
-let gulp = require("gulp");
-let ts = require("gulp-typescript");
-let del = require('del');
-let nodemon = require('nodemon');
-const shell = require('gulp-shell')
+const { series, src, dest, parallel } = require('gulp');
+const ts = require('gulp-typescript');
+const nodemon = require('gulp-nodemon');
+const del = require('del');
 
-gulp.task('clean', function () {
-    return del.sync('dist/*');
-});
 
-gulp.task('build:www', function () {
-    let tsProject = ts.createProject('tsconfig.json');
-    console.log('Compiling www!');
-    return tsProject.src()
+const paths = {
+    assets: {
+        src: 'src/assets/**/*',
+        dest: 'dist/assets'
+    },
+    styles: {
+        src: 'src/**/*.css',
+        dest: 'dist'
+    },
+    pages: {
+        src: 'src/**/*.html',
+        dest: 'dist'
+    },
+    app: {
+        src: 'src/www/**/*',
+        dest: 'dist/www'
+    }
+}
+
+function assets() {
+    return src(paths.assets.src)
+        .pipe(dest(paths.assets.dest));
+}
+
+function styles() {
+    return src(paths.styles.src)
+        .pipe(dest(paths.styles.dest));
+}
+
+function pages() {
+    return src(paths.pages.src)
+        .pipe(dest(paths.pages.dest));
+}
+
+function app() {
+    return src(paths.app.src)
+        .pipe(dest(paths.app.dest));
+}
+
+
+function clean() {
+    return del(['dist']);
+}
+
+function build() {
+    const tsProject = ts.createProject('./tsconfig.json');
+    return tsProject
+        .src()
         .pipe(tsProject())
-        .js.pipe(gulp.dest("dist/js"));
-});
+        .js
+        .pipe(dest("dist/scripts"));
+}
 
-gulp.task('assets', function () {
-    gulp.src('src/assets/**/*')
-        .pipe(gulp.dest('dist/assets'));
-});
-
-gulp.task('robots', function () {
-    gulp.src('src/robots.txt')
-        .pipe(gulp.dest('dist'));
-});
-
-gulp.task('sitemap', function () {
-    gulp.src('src/sitemap.xml')
-        .pipe(gulp.dest('dist'));
-});
-
-
-gulp.task('styles', function () {
-    gulp.src('src/**/*.css')
-        .pipe(gulp.dest('dist'));
-});
-
-gulp.task('pages', function () {
-    gulp.src('src/**/*.html')
-        .pipe(gulp.dest('dist'));
-});
-
-gulp.task('watch', function () {
-    gulp.watch('src/assets/**/*', ['assets']);
-    gulp.watch('src/**/*.css', ['styles']);
-    gulp.watch('src/**/*.html', ['pages']);
-    gulp.watch('src/**/*.ts', ['build:www']);
-});
-
-gulp.task('firebase', shell.task([
-    'firebase serve'
-]))
 
 /**
- * Import front end libs from node_modules
+ *Start the node app
  */
+async function debug() {
+    return nodemon({
+        exec: 'firebase serve',
+        ext: 'ts',
+        watch: 'src/**/*',
+        tasks: ['build']
+    });
+}
 
-gulp.task('libs', function () {
-    //    gulp.src('node_modules/firebase/firebase.js')
-    //        .pipe(gulp.dest('dist/libs'));
-    gulp.src('src/libs/**/*.js')
-        .pipe(gulp.dest('dist/libs'));
-});
-
-// All custom gulp tasks should be added before watch task!!!
-gulp.task('default', ['clean', 'libs', 'assets', 'styles', 'pages', 'build:www', 'watch', 'firebase']);
-
+exports.build = series(clean, parallel(pages, styles, assets, build));
+exports.default = series(clean, parallel(pages, styles, assets, build), debug);
