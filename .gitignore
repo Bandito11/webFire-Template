@@ -1,6 +1,5 @@
 #This can be edited however you wish. 
 node_modules/
-dist/
 npm-debug.log*
 *.log
 *.tmp
